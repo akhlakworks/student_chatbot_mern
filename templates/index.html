@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Chatbot | GramGPT</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <div class="sidebar">
+    <h2>🎓 GramGPT</h2>
+    {% if username %}
+      <p>Welcome, <b>{{ username }}</b></p>
+      <button id="logout-btn">Logout</button>
+    {% else %}
+      <button id="show-login">Login</button>
+      <button id="show-signup">Signup</button>
+    {% endif %}
+  </div>
+
+  <div class="chat-section">
+    <div class="chat-box" id="chat-box">
+      <div class="bot">🤖 Hello! I'm GramGPT, your smart student assistant. Ask me anything!</div>
+    </div>
+    {% if username %}
+      <div class="input-area">
+        <input id="user-input" type="text" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    {% else %}
+      <div class="overlay">
+        <h3>Please log in or sign up to chat.</h3>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div class="modal" id="login-modal">
+    <div class="modal-content">
+      <h3>Login</h3>
+      <input type="text" id="login-username" placeholder="Username">
+      <input type="password" id="login-password" placeholder="Password">
+      <button onclick="login()">Login</button>
+      <p>Don’t have an account? <span id="goto-signup">Signup</span></p>
+    </div>
+  </div>
+
+  <!-- SIGNUP MODAL -->
+  <div class="modal" id="signup-modal">
+    <div class="modal-content">
+      <h3>Signup</h3>
+      <input type="text" id="signup-username" placeholder="Username">
+      <input type="password" id="signup-password" placeholder="Password">
+      <button onclick="signup()">Signup</button>
+      <p>Already have an account? <span id="goto-login">Login</span></p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
